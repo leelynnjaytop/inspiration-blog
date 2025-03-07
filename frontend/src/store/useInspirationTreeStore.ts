@@ -26,7 +26,7 @@ export const useInspirationTreeStore = defineStore("inspirationTree", () => {
     loading.value = true;
     try {
       const res = await nodeApi.getInspirationNodes(inspirationId);
-      trees.value[inspirationId] = organizeNodes(res.data);
+      trees.value[inspirationId] = organizeNodes(res.data.data);
     } catch (error) {
       ElMessage.error('获取灵感树失败');
     } finally {
@@ -120,4 +120,4 @@ export const useInspirationTreeStore = defineStore("inspirationTree", () => {
   };
 }, {
   persist: true // 启用持久化
-}); 
+});

@@ -143,10 +143,9 @@ const loadInspirationData = async () => {
   if (!inspirationId.value) return;
   // try {
     const data = await inspirationStore.fetchInspiration(inspirationId.value);
-    console.log('获取灵感详情成功2222:', data);
     if (data) {
-      // console.log('获取灵感详情成功:', data);
-      inspiration.value = { ...data };
+      inspiration.value = { ...data.data };
+      console.log('获取灵感详情成功 inspiration.value:', inspiration.value);
       // TODO：更新store中的数据
       // const index = inspirationStore.inspirations.findIndex(note => note.id === inspirationId.value);
       // if (index === -1) {
@@ -247,8 +246,11 @@ const initTreeData = async () => {
     return;
   }
 
+  console.log('初始化树数据', inspiration.value);
+
   // 如果没有现有的树节点数据，创建一个根节点
   if (!treeStore.hasTree(inspiration.value.id)) {
+    console.log('创建根节点');
     const rootNode: InspirationNode = {
       id: inspiration.value.id,
       title: inspiration.value.title,

@@ -292,13 +292,14 @@ const formatTime = (time: string) => {
 
 // 过滤灵感列表
 const filteredInspirations = computed(() => {
-  const query = searchQuery.value.toLowerCase().trim();
+  const query = searchQuery.value.trim();
   if (!query) return inspirationStore.recommendedInspirations;
 
   return inspirationStore.recommendedInspirations.filter(inspiration => {
     // 同时搜索标题和作者
-    return inspiration.title.toLowerCase().includes(query) ||
-           inspiration.author.name.toLowerCase().includes(query);
+    console.log(inspiration);
+    return inspiration.title.includes(query) ||
+           inspiration.author.username?.includes(query);
   });
 });
 

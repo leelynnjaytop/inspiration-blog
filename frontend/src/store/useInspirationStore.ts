@@ -52,11 +52,11 @@ export const useInspirationStore = defineStore("inspiration", () => {
   const getInspirations = async () => {
     try {
       const res = await inspirationApi.getInspirations();
-      console.log('获取灵感列表成功:', res);
+      // console.log('获取灵感列表成功:', res);
       const nodes= res.data
-      console.log('转换为树形结构:', nodes);
+      // console.log('转换为树形结构:', nodes);
       const re2 = nodes.data
-      console.log('rs:', re2);
+      console.log('获取灵感列表成功 re2 inspirations.value:', re2);
       // 正确访问分页数据中的items数组
       inspirations.value = _.map(re2, (item: Inspiration) => ({
         ...item,
